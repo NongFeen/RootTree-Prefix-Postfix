@@ -28,7 +28,6 @@ public class RootTree {
     private void CreateNode(String[] s){
         for (String str : s) {
             try {
-                // System.out.println(Integer.parseInt(str));
                 arrNode.add(new Node(Integer.parseInt(str)));
             } catch (Exception e) {
                 arrNode.add(new Node(str));
