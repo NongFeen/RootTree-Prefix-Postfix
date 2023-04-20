@@ -118,6 +118,7 @@ public class RootTree {
         while(ndlist.size() != this.getString().length){
             for(step =0;step<ndlist.size();step++){
                 if(ndlist.get(step).haveChildLeft()&&ndlist.get(step).getChildLeft().getLevel()<0){
+                    level = ndlist.get(step).getLevel()+1;
                     ndlist.add(step, ndlist.get(step).getChildLeft());
                     ndlist.get(step).setLevel(level);
                     ndlist.add(step+2, ndlist.get(step+1).getChildRight());
