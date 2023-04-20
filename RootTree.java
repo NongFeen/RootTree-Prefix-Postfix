@@ -15,9 +15,14 @@ public class RootTree {
     public String[] getString() {
         return string;
     }
-
     public ArrayList<Node> getArrNode() {
         return arrNode;
+    }
+    public Node getLastNode() {
+        return lastNode;
+    }
+    public void setLastNode(Node lastNode) {
+        this.lastNode = lastNode;
     }
 
     private void CreateNode(String[] s){
@@ -31,19 +36,16 @@ public class RootTree {
         }
     }
 
-    public Node getLastNode() {
-        return lastNode;
-    }
-    public void setLastNode(Node lastNode) {
-        this.lastNode = lastNode;
-    }
-
-    public Node findParent(){
+    private Node findParent(){
         while(this.getArrNode().size()>1){//loop all to find all oparetor frome left to right
             //find * or /  first
             for(int i=0;i<this.getArrNode().size();i++){
-                if(this.getArrNode().get(i).isOparetor()&&(this.getArrNode().get(i).getOparetor().equals("*")||this.getArrNode().get(i).getOparetor().equals("/"))){
-                    Node nd = new Node(this.getArrNode().get(i-1),this.getArrNode().get(i+1),this.getArrNode().get(i).getOparetor());
+                Node thisNd = this.getArrNode().get(i);
+                if(thisNd.isOparetor()&&
+                (thisNd.getOparetor().equals("*")
+                ||thisNd.getOparetor().equals("/"))){
+                    Node nd = new Node(
+                        this.getArrNode().get(i-1),this.getArrNode().get(i+1),thisNd.getOparetor());
                     this.getArrNode().remove(i+1);
                     this.getArrNode().remove(i);
                     this.getArrNode().add(i,nd);
@@ -53,8 +55,11 @@ public class RootTree {
             }
             //find + or -
             for(int i=0;i<this.getArrNode().size();i++){
-                if(this.getArrNode().get(i).isOparetor()&&(this.getArrNode().get(i).getOparetor().equals("+")||this.getArrNode().get(i).getOparetor().equals("-"))){
-                    Node nd = new Node(this.getArrNode().get(i-1),this.getArrNode().get(i+1),this.getArrNode().get(i).getOparetor());
+                Node thisNd = this.getArrNode().get(i);
+                if(thisNd.isOparetor()&&
+                (thisNd.getOparetor().equals("+")||thisNd.getOparetor().equals("-"))){
+                    Node nd = new Node(
+                        this.getArrNode().get(i-1),this.getArrNode().get(i+1),thisNd.getOparetor());
                     this.getArrNode().remove(i+1);
                     this.getArrNode().remove(i);
                     this.getArrNode().add(i,nd);

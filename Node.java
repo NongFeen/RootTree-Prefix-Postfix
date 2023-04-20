@@ -82,8 +82,9 @@ public class Node{
     public void setOparetor(String oparetor) {
         this.oparetor = oparetor;
     }
+    
     @Override
-    public String toString() {
+    public String toString() {// Print Opearator first if it can
         try {
             if(this.getOparetor()!=null)
                 return this.getOparetor();
